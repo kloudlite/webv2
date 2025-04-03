@@ -1,10 +1,12 @@
 "use client";
-import { Button } from '@kloudlite/design-system/atoms/button';
+
+import { Header } from "./components/header";
 
 export default function Home() {
   return (
-    <div>
-      <Button content={"Hello"}/>
-    </div>
+    <>
+      <Header />
+      <main></main>
+    </>
   );
 }

@@ -1,9 +1,9 @@
 {
   "include": [
-    "**/*.js",
-    "**/*.jsx",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
     ".next/types/**/*.ts"
   ],
   "compilerOptions": {
@@ -26,7 +26,9 @@
     "checkJs": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@components/*": ["src/components/*"]
+    },
     "noEmit": true,
     "incremental": true,
     "module": "esnext",
