@@ -1,12 +1,11 @@
-"use client";
-
+import { SignupForm } from "./client-components";
 import { Header } from "./components/header";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main></main>
+      <SignupForm />
     </>
   );
 }

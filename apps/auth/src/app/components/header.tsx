@@ -9,21 +9,16 @@ export const Header = () => {
         <Link href="/" className="flex items-center">
           <BrandLogo size={40} detailed />
         </Link>
-
-
-
-        <Button
-            variant="plain"
-            content="Contact us"
-            onClick={() => window.open('https://kloudlite.io/contact-us')}
-            className=""
+        <Link href="https://kloudlite.io/contact-us">
+          <Button variant="plain" content="Contact us" className="" />
+        </Link>
+        <Link href="/sign-up">
+          <Button
+            variant="primary"
+            content="Sign up"
+            className="px-4 py-2 text-6xl font-bold"
           />
-        <Button
-          variant="primary"
-          content="Sign up"
-          onClick={() => window.open("https://kloudlite.io/sign-up")}
-          className="px-4 py-2 text-6xl font-bold"
-        />
+        </Link>
       </div>
     </header>
   );
