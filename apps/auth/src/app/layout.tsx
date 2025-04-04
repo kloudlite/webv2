@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import "@kloudlite/design-system/index.css"
 import "./globals.css"
+// import { Inter } from '@next/font/google';
+import "@kloudlite/design-system/index.css"
 
+// const inter = Inter({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-inter',
+// })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" >
+      <head>
+        <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+      </head>
+      <body >
         {children}
       </body>
     </html>

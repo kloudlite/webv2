@@ -1,14 +1,22 @@
-import { SignupForm } from "./client-components";
-import { Header } from "./components/header";
-import { Main } from "./components/mainform";
+import Container from "@components/container";
+import { Button } from "@kloudlite/design-system/atoms/button";
+import { Link } from '@components/link';
 
 export default function Home() {
   return (
-    <>
-      <Header />
-      <SignupForm />
-      <Main />
-      
-    </>
+    <Container
+      headerExtra={
+        <Button
+          variant="outline"
+          content="Sign in"
+          linkComponent={Link}
+          to="/login"
+        />
+      }
+    >
+      <div className="bg-red-400">
+      Login Form
+      </div>
+    </Container>
   );
 }
