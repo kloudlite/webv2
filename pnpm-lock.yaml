@@ -18,14 +18,60 @@ importers:
         specifier: 5.8.2
         version: 5.8.2
 
+  apps/account-registration:
+    dependencies:
+      '@jengaicons/react':
+        specifier: ^1.9.0
+        version: 1.9.0(react@19.1.0)
+      '@kloudlite/design-system':
+        specifier: 0.0.58-nightly
+        version: 0.0.58-nightly(@types/react-dom@19.0.4)(@types/react@19.0.12)(immer@10.1.1)(monaco-editor@0.52.2)(react-dom@19.1.0)(react@19.1.0)(websocket@1.0.35)
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: 15.2.4
+        version: 15.2.4(react-dom@19.1.0)(react@19.1.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.17.30
+      '@types/react':
+        specifier: ^19
+        version: 19.0.12
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.0.4(@types/react@19.0.12)
+      autoprefixer:
+        specifier: ^10.4.21
+        version: 10.4.21(postcss@8.5.3)
+      postcss:
+        specifier: ^8.5.3
+        version: 8.5.3
+      tailwindcss:
+        specifier: ^3.4.17
+        version: 3.4.17
+      typescript:
+        specifier: ^5
+        version: 5.8.2
+
   apps/auth:
     dependencies:
       '@jengaicons/react':
         specifier: ^1.9.0
         version: 1.9.0(react@19.1.0)
       '@kloudlite/design-system':
-        specifier: 0.0.55-nightly
-        version: 0.0.55-nightly(@types/react-dom@19.0.4)(@types/react@19.0.12)(immer@10.1.1)(monaco-editor@0.52.2)(react-dom@19.1.0)(react@19.1.0)(websocket@1.0.35)
+        specifier: 0.0.58-nightly
+        version: 0.0.58-nightly(@types/react-dom@19.0.4)(@types/react@19.0.12)(immer@10.1.1)(monaco-editor@0.52.2)(react-dom@19.1.0)(react@19.1.0)(websocket@1.0.35)
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -184,6 +230,9 @@ importers:
 
   packages/ui:
     dependencies:
+      next:
+        specifier: ^15.2.4
+        version: 15.2.4(react-dom@19.1.0)(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -869,8 +918,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
 
-  /@kloudlite/design-system@0.0.55-nightly(@types/react-dom@19.0.4)(@types/react@19.0.12)(immer@10.1.1)(monaco-editor@0.52.2)(react-dom@19.1.0)(react@19.1.0)(websocket@1.0.35):
-    resolution: {integrity: sha512-Hnrw8u3htfQUmU6zpu9U1I4zv3SxsRRngyy2KNkPsrqStJy4DnbYZ3P39tRG8gqTFzDyN9mKj+K2JUiRKferMQ==}
+  /@kloudlite/design-system@0.0.58-nightly(@types/react-dom@19.0.4)(@types/react@19.0.12)(immer@10.1.1)(monaco-editor@0.52.2)(react-dom@19.1.0)(react@19.1.0)(websocket@1.0.35):
+    resolution: {integrity: sha512-gQCoJmKl7tddS73Bu4zwrXWCYlAf+EETR63Cyd0O611V50LLZpDseIRh9tbHyXRKXCjmrH+3u/vc0YvtDVUzug==}
     peerDependencies:
       react: ^18.2.0 || ^17.0.0 || ^16.0.0 || ^19.0.0 || 19.1.0
       react-dom: ^18.2.0 || ^17.0.0 || ^16.0.0 || ^19.0.0
@@ -883,7 +932,7 @@ packages:
       '@jengaicons/react': 1.6.0(react@19.1.0)
       '@mdx-js/react': 2.3.0(react@19.1.0)
       '@monaco-editor/react': 4.7.0(monaco-editor@0.52.2)(react-dom@19.1.0)(react@19.1.0)
-      '@radix-ui/primitive': 1.1.1
+      '@radix-ui/primitive': 1.1.2-rc.8
       '@radix-ui/react-alert-dialog': 1.0.4(@types/react-dom@19.0.4)(@types/react@19.0.12)(react-dom@19.1.0)(react@19.1.0)
       '@radix-ui/react-checkbox': 1.1.4(@types/react-dom@19.0.4)(@types/react@19.0.12)(react-dom@19.1.0)(react@19.1.0)
       '@radix-ui/react-collection': 1.1.2(@types/react-dom@19.0.4)(@types/react@19.0.12)(react-dom@19.1.0)(react@19.1.0)
@@ -1131,6 +1180,10 @@ packages:
 
   /@radix-ui/primitive@1.1.1:
     resolution: {integrity: sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==}
+    dev: false
+
+  /@radix-ui/primitive@1.1.2-rc.8:
+    resolution: {integrity: sha512-yRQ1XY0eLtRGXshMVQ0NZOUKpp7+Rc/2ha0mEcqgUe7+mHp1z6InD9nRiYP/nl+6YTQQEihs0cgjG4IVUH89iA==}
     dev: false
 
   /@radix-ui/react-alert-dialog@1.0.4(@types/react-dom@19.0.4)(@types/react@19.0.12)(react-dom@19.1.0)(react@19.1.0):
