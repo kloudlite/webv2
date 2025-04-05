@@ -9,14 +9,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": ["react", "react-dom"],
-      "allowedVersions": {
-        "react": "19.1.0"
-      }
-    }
-  },
   "dependencies": {
     "@jengaicons/react": "^1.9.0",
     "@kloudlite/design-system": "0.0.55-nightly",
