@@ -8,6 +8,14 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
   },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": ["react", "react-dom", "@kloudlite/design-system"],
+      "allowedVersions": {
+        "react": "19.1.0"
+      }
+    }
+  },
   "devDependencies": {
     "prettier": "^3.5.3",
     "turbo": "^2.4.4",

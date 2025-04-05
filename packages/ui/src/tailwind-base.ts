@@ -1,8 +1,8 @@
-import noScrollbar from './css-plugins/no-scrollbar.js';
-import noSpinner from './css-plugins/no-spinner.js';
-import scrollbar from './css-plugins/scrollbar.js';
-import typography from './css-plugins/typography.js';
-import perspective from './css-plugins/perspective.js';
+import noScrollbar from './css-plugins/no-scrollbar';
+import noSpinner from './css-plugins/no-spinner';
+import scrollbar from './css-plugins/scrollbar';
+import typography from './css-plugins/typography';
+import perspective from './css-plugins/perspective';
 
 const primitives = {
   spacing: {

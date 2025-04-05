@@ -1,21 +1,18 @@
 import Container from "@components/container";
-import { Button } from "@kloudlite/design-system/atoms/button";
 import { Link } from '@components/link';
+import { Button } from "@kloudlite/design-system/atoms/button";
 
 export default function Home() {
   return (
-    <Container
-      headerExtra={
-        <Button
+    <Container headerExtra={
+      <Button
           variant="outline"
-          content="Sign in"
+          content="Sign up"
           linkComponent={Link}
-          to="/login"
+          to="/signup"
         />
-      }
-    >
-      <div className="bg-red-400">
-      Login Form
+    }>
+      <div className="h-full">
       </div>
     </Container>
   );
