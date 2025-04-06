@@ -1,76 +1,18 @@
-import { Link } from "@repo/ui/link";
-import { PasswordInput, TextInput } from "@kloudlite/design-system/atoms/input";
-import { Button } from "@kloudlite/design-system/atoms/button";
-import { ArrowLeft, ArrowRight } from "@kloudlite/design-system/icons";
+import { RegistrationForm } from "./_components/client-components";
 
 export default function Home() {
   return (
-    <div className="h-full">
-      <div className="flex flex-col gap-3xl md:w-[600px] px-3xl py-5xl md:px-9xl">
-        <div className="flex flex-col gap-lg items-center pb-6xl text-center">
-          <div className="text-text-strong headingXl text-center">
-            Sign in to Kloudlite
+    <div className="h-full flex items-center justify-center">
+      <div className="flex flex-col gap-6xl md:w-[600px] px-3xl p-5xl md:px-5xl bg-surface-basic-default border border-border-default rounded-lg">
+        <div className="flex flex-col gap-lg">
+          <div className="text-text-strong headingXl ">
+            Create your Kloudlite account
           </div>
           <div className="bodyMd-medium text-text-soft">
-            to access Development Environments
+            Sign up with your work email to elevate your trial with expert assistance, cloud options and more.
           </div>
         </div>
-        <form className="grid grid-cols-2 items-stretch gap-3xl">
-          <TextInput
-            label="First Name"
-            className="h-[48px]"
-            name="name"
-            size="lg"
-            autoFocus
-          />
-          <TextInput
-            label="Last Name"
-            className="h-[48px]"
-            name="name"
-            size="lg"
-            autoFocus
-          />
-          <div className="col-span-2">
-            <TextInput
-              label="Email"
-              className="h-[48px]"
-              name="email"
-              size="lg"
-            />
-          </div>
-          <div className="col-span-2">
-            <TextInput
-              label="Phone"
-              className="h-[48px]"
-              name="phone"
-              size="lg"
-            />
-          </div>
-          <TextInput
-            label="Company"
-            className="h-[48px]"
-            name="company"
-            size="lg"
-          />
-          <TextInput
-            label="Title"
-            className="h-[48px]"
-            name="company"
-            size="lg"
-          />
-
-          
-
-          <Button
-            size="lg"
-            variant="primary"
-            className="col-span-2"
-            content={<span className="bodyLg-medium">Login with Email</span>}
-            suffix={<ArrowRight />}
-            block
-            type="submit"
-          />
-        </form>
+        <RegistrationForm />
       </div>
     </div>
   );

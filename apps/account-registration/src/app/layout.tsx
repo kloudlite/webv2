@@ -18,7 +18,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" />
         <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
       </head>
-      <body className="h-full antialiased ">
+      <body className="h-full antialiased">
         {children}
       </body>
     </html>
