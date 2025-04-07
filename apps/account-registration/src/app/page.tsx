@@ -1,6 +1,8 @@
 import { RegistrationForm } from "./_components/client-components";
+import { listDNSRecords } from "@repo/cf-domain-management";
 
 export default function Home() {
+  console.log(listDNSRecords)
   return (
     <div className="h-full flex items-center justify-center">
       <div className="flex flex-col gap-6xl md:w-[600px] px-3xl p-5xl md:px-5xl bg-surface-basic-default border border-border-default rounded-lg">

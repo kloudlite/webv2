@@ -8,6 +8,7 @@
       "types": "./src/*"
     }
   },
+  "types": "./",
   "typesVersions": {
     "*": {
       "*": ["src/*"]

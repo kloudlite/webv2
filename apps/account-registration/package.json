@@ -16,7 +16,8 @@
     "@jengaicons/react": "^1.9.0",
     "@kloudlite/design-system": "0.0.58-nightly",
     "@repo/ui": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "@repo/cf-domain-management": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20",
