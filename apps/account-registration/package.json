@@ -10,14 +10,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.2.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "@jengaicons/react": "^1.9.0",
     "@kloudlite/design-system": "0.0.58-nightly",
-    "@repo/ui": "workspace:*",
+    "@repo/cf-domain-management": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/cf-domain-management": "workspace:*"
+    "@repo/ui": "workspace:*",
+    "bcrypt": "^5.1.1",
+    "next": "15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

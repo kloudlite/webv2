@@ -1,6 +1,6 @@
 import Cloudflare from "cloudflare";
 import { v4 as uuid } from "uuid"
-import {genSalt, hash as bhash} from "bcrypt";
+import bcrypt from "bcrypt";
 import { generateNameSuggestions } from "../utils/commons";
 import { RecordListParams } from "cloudflare/resources/dns/records";
 
@@ -56,8 +56,8 @@ export const suggestDomains = async (config: Config,companyName: string) => {
 export const reserveDomain = async (config: Config,domainName: string) => {
   const client = getCli(config);
   const uniquekey = uuid()
-  const salt = await genSalt()
-  const hash = await bhash(uniquekey, salt)
+  const salt = await bcrypt.genSalt()
+  const hash = await bcrypt.hash(uniquekey, salt)
 
   const res = await client.dns.records.create({
     zone_id: config.CLOUDFLARE_ZONE_ID!, type: 'TXT', name: domainName, content:
@@ -79,7 +79,7 @@ export const registerDomain = async (
   if(!txtId || !uniqueKey || !salt) {
     throw new Error("Invalid reservation token")
   }
-  const hash = await bhash(uniqueKey, salt)
+  const hash = await bcrypt.hash(uniqueKey, salt)
 
   const txtRes = await client.dns.records.get(txtId, {
     zone_id: config.CLOUDFLARE_ZONE_ID!
