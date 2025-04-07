@@ -17,6 +17,7 @@ const getCli = (config: Config) => {
   });
 }
 export const listDNSRecords = async (config: Config,domainName: string, type: RecordListParams['type']) => {
+  console.log("Here 1")
   const client = getCli(config);
   for await (const recordResponse of client.dns.records.list({
     zone_id: config.CLOUDFLARE_ZONE_ID!,

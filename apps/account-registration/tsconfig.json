@@ -6,9 +6,6 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@repo/ui/*": ["./node_modules/@repo/ui/src/*"],
-    }
   },
   "include": [
     "**/*.ts",

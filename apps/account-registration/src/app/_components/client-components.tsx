@@ -1,12 +1,42 @@
 "use client";
 
-import { Link } from "@repo/ui/link";
-import { PasswordInput, TextInput } from "@kloudlite/design-system/atoms/input";
+import { TextInput } from "@kloudlite/design-system/atoms/input";
 import { Button } from "@kloudlite/design-system/atoms/button";
-import { ArrowLeft, ArrowRight } from "@kloudlite/design-system/icons";
+import { ArrowRight } from "@kloudlite/design-system/icons";
 import Select from "@kloudlite/design-system/atoms/select";
+import { useState, useEffect } from "react";
+import debounce from "lodash.debounce";
+import { listDNSRecords } from "@repo/cf-domain-management";
+
 
 export const RegistrationForm = () => {
+
+  const [company, setCompany] = useState("");
+  const [suggestedDomains, setSuggestedDomains] = useState<{ label: string, value: string }[]>([]);
+
+  const fetchSuggestedDomains = async (companyName: string) => {
+    if (!companyName) return;
+    try {
+      // const suggestions = await listDNSRecords(companyName);
+      const suggestions = await listDNSRecords;
+      console.log(suggestions)
+      // setSuggestedDomains(suggestions.map((d: string) => ({
+      //   label: d,
+      //   value: d,
+      // })));
+    } catch (err) {
+      console.error("Error fetching domain suggestions", err);
+    }
+  };
+
+  const debouncedFetch = debounce(fetchSuggestedDomains, 500);
+
+  useEffect(() => {
+    debouncedFetch(company);
+    return debouncedFetch.cancel;
+  }, [company]);
+
+
   return (
     <form className="flex flex-col gap-6xl">
       <div className="grid grid-cols-2 items-stretch gap-3xl">
@@ -40,24 +70,29 @@ export const RegistrationForm = () => {
             size="lg"
           />
         </div>
+
         <TextInput
           label="Company"
           className="h-[48px]"
           name="company"
           size="lg"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
         />
+
         <TextInput
           label="Title"
           className="h-[48px]"
-          name="company"
+          name="title"
           size="lg"
         />
+
         <div className="col-span-2">
-          <TextInput
+          <Select
             label="Kloudlite Domain"
-            className="h-[48px]"
-            name="domain"
+            value=""
             size="lg"
+            options={() => Promise.resolve(suggestedDomains)}
           />
         </div>
 
@@ -91,6 +126,7 @@ export const RegistrationForm = () => {
           suffix={<ArrowRight />}
           block
           type="submit"
+          to="/cloud-provider"
         />
       </div>
     </form>

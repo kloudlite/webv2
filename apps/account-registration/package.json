@@ -16,11 +16,15 @@
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
     "bcrypt": "^5.1.1",
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "next": "15.2.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
