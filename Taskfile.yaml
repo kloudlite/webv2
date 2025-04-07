@@ -1,0 +1,33 @@
+version: 3
+
+dotenv:
+  - .secrets/env
+
+tasks:
+  dev:api:
+    interactive: true
+    dir: ./apps/account-registration-api
+    cmds:
+      - pnpm run build
+
+  api:container:build:
+    interactive: true
+    dir: ./apps/account-registration-api
+    preconditions:
+      - sh: '[[ -n "{{.tag}}" ]]'
+        msg: "var tag must have a value"
+    vars:
+      Image: ghcr.io/kloudlite/domain-allocator:{{.tag}}
+    cmds:
+      - docker build  . -t {{.Image}}
+
+  api:container:push:
+    interactive: true
+    dir: ./apps/account-registration-api
+    preconditions:
+      - sh: '[[ -n "{{.tag}}" ]]'
+        msg: "var tag must have a value"
+    vars:
+      Image: ghcr.io/kloudlite/domain-allocator:{{.tag}}
+    cmds:
+      - docker buildx build -t {{.Image}} --platform linux/arm64,linux/amd64 --push .
