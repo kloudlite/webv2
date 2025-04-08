@@ -18,20 +18,27 @@ const getCli = (config: Config) => {
 }
 export const listDNSRecords = async (config: Config,domainName: string, type: RecordListParams['type']) => {
   const client = getCli(config);
-  console.log(config)
-  const records = await client.dns.records.list({
-    zone_id: config.CLOUDFLARE_ZONE_ID!,
-    type,
-    name: {
-      exact: domainName
+  try {
+    const records = await client.dns.records.list({
+      zone_id: config.CLOUDFLARE_ZONE_ID!,
+      type,
+      name: {
+        exact: domainName
+      }
+    })
+    return records
+  } catch (e) {
+    console.error(e)
+    return {
+      result:[]
     }
-  })
-  return records
+  }
 }
 
 export const checkDomainAvailability = async (config: Config,domainName: string) => {
   const client = getCli(config);
-  return listDNSRecords(config, domainName, 'TXT')
+  const txtRecords = await listDNSRecords(config, domainName, 'TXT')
+  return txtRecords.result.length==0
 };
 
 export const suggestDomains = async (config: Config,companyName: string) => {
@@ -44,8 +51,8 @@ export const suggestDomains = async (config: Config,companyName: string) => {
       break
     }
     console.log(`${sn}.khost.dev`)
-    const txtRecords = await listDNSRecords(config,`${sn}.khost.dev`, "TXT")
-    if (txtRecords.result.length == 0) {
+    const available = await checkDomainAvailability(config, `${sn}.khost.dev`)
+    if (available) {
       availNames.push(sn + ".khost.dev")
     }
   }
