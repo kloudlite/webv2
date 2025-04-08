@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css"
 import "@kloudlite/design-system/index.css"
-import { ClientWrapper } from "./client-wrapper";
 
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ export default function RootLayout({
         <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
       </head>
       <body className="h-full antialiased">
-        <ClientWrapper>{children}</ClientWrapper>
+        {children}
       </body>
     </html>
   );
