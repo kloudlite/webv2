@@ -7,4 +7,5 @@ export interface FormDataType {
   country: string;
   company: string;
   kloudliteDomain: string;
+  suggestedDomains: string[];
 }

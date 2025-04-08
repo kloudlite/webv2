@@ -43,7 +43,7 @@ export const checkDomainAvailability = async (config: Config,domainName: string)
 
 export const suggestDomains = async (config: Config,companyName: string) => {
   const availNames: string[] = []
-  const sNames = generateNameSuggestions(companyName, 10)
+  const sNames = generateNameSuggestions(companyName, 4)
   console.log(sNames)
   for (let i = 0; i < sNames.length; i++) {
     const sn = sNames[i]
@@ -53,7 +53,7 @@ export const suggestDomains = async (config: Config,companyName: string) => {
     console.log(`${sn}.khost.dev`)
     const available = await checkDomainAvailability(config, `${sn}.khost.dev`)
     if (available) {
-      availNames.push(sn + ".khost.dev")
+      availNames.push(sn?.toLowerCase() + ".khost.dev")
     }
   }
   return availNames

@@ -4,18 +4,13 @@ import { TextInput } from "@kloudlite/design-system/atoms/input";
 import { Button } from "@kloudlite/design-system/atoms/button";
 import { ArrowRight } from "@kloudlite/design-system/icons";
 import Select from "@kloudlite/design-system/atoms/select";
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
-import debounce from "lodash.debounce";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getSuggestedNames } from "./server";
 import clsx from "clsx";
-import { useRouter } from "next/navigation";
-import { useRegistration } from "../context/RegistrationContext";
 import { CloudProviderForm } from "./cloud-provider-selection";
 import { FormDataType } from "./common";
 
-
-
-export const MainForm = ()=>{
+export const MainForm = () => {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<FormDataType>({
     firstName: "",
@@ -25,22 +20,43 @@ export const MainForm = ()=>{
     title: "",
     country: "IN",
     company: "",
-    kloudliteDomain: ""
-  })
-  const goNext = ()=>{
+    kloudliteDomain: "",
+    suggestedDomains:[],
+  });
+  const goNext = () => {
     setStep((prevStep) => prevStep + 1);
-  }
-  const goPrev = ()=>{
+  };
+  const goPrev = () => {
     setStep((prevStep) => prevStep - 1);
-  }
-  return <>
-    {step === 0 && (<RegistrationForm formData={formData} setFormData={setFormData} goNext={goNext} />)}
-    {step === 1 && (<CloudProviderForm formData={formData} setFormData={setFormData} goPrev={goPrev} />)}
-  </>
-}
+  };
+  return (
+    <>
+      {step === 0 && (
+        <RegistrationForm
+          formData={formData}
+          setFormData={setFormData}
+          goNext={goNext}
+        />
+      )}
+      {step === 1 && (
+        <CloudProviderForm
+          formData={formData}
+          setFormData={setFormData}
+          goPrev={goPrev}
+        />
+      )}
+    </>
+  );
+};
 
-export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormDataType, setFormData:Dispatch<SetStateAction<FormDataType>>, goNext:()=>void}) => {
-  const [suggestedDomains, setSuggestedDomains] = useState<string[]>([]);
+export const RegistrationForm = (
+  { formData, setFormData, goNext }: {
+    formData: FormDataType;
+    setFormData: Dispatch<SetStateAction<FormDataType>>;
+    goNext: () => void;
+  },
+) => {
+  // const [suggestedDomains, setSuggestedDomains] = useState<string[]>([]);
 
   const isFormValid = Object.values(formData).every(Boolean);
 
@@ -52,26 +68,33 @@ export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormD
   const [dtimer, setDtimer] = useState<any>();
 
   useEffect(() => {
+    if(formData.suggestedDomains.length > 0) {
+      return
+    }
     if (dtimer) {
       clearTimeout(dtimer);
     }
     const timer = setTimeout(async () => {
       if (formData.company || formData.kloudliteDomain) {
         const suggestionFromCompanyName = formData.company.split(" ")[0] || "";
-        const suggestions = await getSuggestedNames(formData.kloudliteDomain || suggestionFromCompanyName);
+        const suggestions = await getSuggestedNames(
+          formData.kloudliteDomain || suggestionFromCompanyName,
+        );
         if (Array.isArray(suggestions) && suggestions.length > 0) {
-          setSuggestedDomains(suggestions.slice(0, 3));
           setFormData((prevData) => ({
             ...prevData,
+            suggestedDomains: suggestions,
             kloudliteDomain: suggestions[0] || "",
           }));
         }
       } else {
-        setSuggestedDomains([]);
-        setFormData((prevData) => ({
-          ...prevData,
-          kloudliteDomain: "",
-        }));
+        setFormData((prevData)=>{
+          return {
+            ...prevData,
+            suggestedDomains: [],
+            kloudliteDomain: "",
+          }
+        })
       }
     }, 500);
     setDtimer(timer);
@@ -128,7 +151,8 @@ export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormD
           name="company"
           size="lg"
           value={formData.company}
-          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, company: e.target.value })}
         />
 
         <TextInput
@@ -137,8 +161,7 @@ export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormD
           name="title"
           size="lg"
           value={formData.title}
-          onChange={(e) =>
-            setFormData({ ...formData, title: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
 
         <div className="col-span-2">
@@ -153,10 +176,12 @@ export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormD
               setFormData({ ...formData, kloudliteDomain: e.target.value })}
           />
 
-          {suggestedDomains.length > 0 && (
+          {formData.suggestedDomains.length > 0 && (
             <div className="flex gap-md mt-md flex-wrap">
-              {suggestedDomains.map((domain) => (
-                <button
+              {formData.suggestedDomains.map((domain) => (
+                <Button
+                  size="sm"
+                  variant="outline"
                   key={domain}
                   type="button"
                   className={clsx(
@@ -168,9 +193,8 @@ export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormD
                   onClick={() => {
                     setFormData({ ...formData, kloudliteDomain: domain });
                   }}
-                >
-                  {domain}
-                </button>
+                  content={domain}
+                />
               ))}
             </div>
           )}
@@ -181,7 +205,7 @@ export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormD
             label="Country"
             value={formData.country}
             onChange={(e: any) => {
-                setFormData({ ...formData, country: e.value });
+              setFormData({ ...formData, country: e.value });
             }}
             options={async () => {
               return [
@@ -194,21 +218,22 @@ export const RegistrationForm = ({formData, setFormData, goNext}:{formData:FormD
         </div>
       </div>
 
-      <div className="flex flex-col gap-3xl">
+      <div className="flex gap-3xl justify-between pt-3xl">
         <p className="bodySm">
           By clicking "Continue," you agree to Kloudlite processing your
           personal data in accordance with its Privacy Notice.
         </p>
-        <Button
-          size="lg"
-          variant="primary"
-          className="col-span-2"
-          content={<span className="bodyLg-medium">Continue</span>}
-          suffix={<ArrowRight />}
-          block
-          type="submit"
-          disabled={!isFormValid}
-        />
+        <div>
+          <Button
+            size="lg"
+            variant="primary"
+            content={<span className="bodyLg-medium">Continue</span>}
+            suffix={<ArrowRight />}
+            block
+            type="submit"
+            disabled={!isFormValid}
+          />
+        </div>
       </div>
     </form>
   );

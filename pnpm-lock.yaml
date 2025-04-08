@@ -87,6 +87,9 @@ importers:
 
   apps/account-registration-api:
     dependencies:
+      '@repo/cf-domain-management':
+        specifier: workspace:*
+        version: link:../../packages/cf-domain-management
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1

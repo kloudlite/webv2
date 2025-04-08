@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "@repo/cf-domain-management": "workspace:*",
     "body-parser": "^2.2.0",
     "cloudflare": "^4.2.0",
     "uuid": "^11.1.0",

@@ -10,9 +10,18 @@ tasks:
     cmds:
       - pnpm run build
 
-  api:container:build:
+  ac-reg-web:container:build:
     interactive: true
-    dir: ./apps/account-registration-api
+    preconditions:
+      - sh: '[[ -n "{{.tag}}" ]]'
+        msg: "var tag must have a value"
+    vars:
+      Image: ghcr.io/kloudlite/account-registration:{{.tag}}
+    cmds:
+      - docker build . -t {{.Image}} -f apps/account-registration/Dockerfile
+
+  ac-reg-api:container:build:
+    interactive: true
     preconditions:
       - sh: '[[ -n "{{.tag}}" ]]'
         msg: "var tag must have a value"
@@ -21,9 +30,8 @@ tasks:
     cmds:
       - docker build  . -t {{.Image}}
 
-  api:container:push:
+  ac-reg-api:container:push:
     interactive: true
-    dir: ./apps/account-registration-api
     preconditions:
       - sh: '[[ -n "{{.tag}}" ]]'
         msg: "var tag must have a value"
