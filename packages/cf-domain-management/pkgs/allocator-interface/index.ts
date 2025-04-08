@@ -17,8 +17,9 @@ const getCli = (config: Config) => {
   });
 }
 export const listDNSRecords = async (config: Config,domainName: string, type: RecordListParams['type']) => {
-  console.log("Here 1")
+  console.log("Checking availability of domain",config, domainName, type)
   const client = getCli(config);
+  try {
   for await (const recordResponse of client.dns.records.list({
     zone_id: config.CLOUDFLARE_ZONE_ID!,
     type,
@@ -28,6 +29,10 @@ export const listDNSRecords = async (config: Config,domainName: string, type: Re
   })) {
     return false
   }
+} catch (err) {
+  console.log(err)
+  return false
+}
   return true
 }
 

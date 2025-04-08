@@ -5,7 +5,7 @@ import { Button } from "@kloudlite/design-system/atoms/button";
 import { FaAws } from 'react-icons/fa';
 import { FcGoogle as GoogleCloudIcon } from 'react-icons/fc';
 import { TbBrandAzure as MicrosoftAzureIcon } from 'react-icons/tb';
-
+import { useRegistration } from "../context/RegistrationContext";
 
 
 const providers = [
@@ -31,6 +31,9 @@ const providers = [
   
 
 export const CloudProviderForm = () => {
+  const { data } = useRegistration();
+  console.log(data)
+  
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
