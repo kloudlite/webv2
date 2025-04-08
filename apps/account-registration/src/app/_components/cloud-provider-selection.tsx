@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Button } from "@kloudlite/design-system/atoms/button";
 import { FaAws } from 'react-icons/fa';
 import { FcGoogle as GoogleCloudIcon } from 'react-icons/fc';
 import { TbBrandAzure as MicrosoftAzureIcon } from 'react-icons/tb';
 import { useRegistration } from "../context/RegistrationContext";
+import { FormDataType } from './common';
 
 
 const providers = [
@@ -30,7 +31,8 @@ const providers = [
   ];
   
 
-export const CloudProviderForm = () => {
+
+export const CloudProviderForm = ({formData, setFormData, goPrev}:{formData:FormDataType, setFormData:Dispatch<SetStateAction<FormDataType>>, goPrev:()=>void}) => {
   const { data } = useRegistration();
   console.log(data)
   

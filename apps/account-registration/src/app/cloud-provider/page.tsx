@@ -1,4 +1,4 @@
-import { CloudProviderForm } from "../_components/cloud-provider-components";
+import { CloudProviderForm } from "../_components/cloud-provider-selection";
 
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import { RegistrationForm } from "./_components/client-components";
+import { MainForm } from "./_components/registration-form";
 // import { listDNSRecords } from "@repo/cf-domain-management";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
             Sign up with your work email to elevate your trial with expert assistance, cloud options and more.
           </div>
         </div>
-        <RegistrationForm />
+        <MainForm />
       </div>
     </div>
   );
