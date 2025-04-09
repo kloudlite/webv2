@@ -164,7 +164,7 @@ export const RegistrationForm = (
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
 
-        <div className="col-span-2">
+        <div className="col-span-2 flex flex-col gap-lg">
           <TextInput
             label="Kloudlite Domain"
             className="h-[48px] bg-gray-100"
@@ -177,7 +177,8 @@ export const RegistrationForm = (
           />
 
           {formData.suggestedDomains.length > 0 && (
-            <div className="flex gap-md mt-md flex-wrap">
+            <div className="flex gap-md mt-md flex-wrap items-center">
+              <span className="text-sm text-text-soft font-medium">suggestions: </span>
               {formData.suggestedDomains.map((domain) => (
                 <Button
                   size="sm"
@@ -185,7 +186,7 @@ export const RegistrationForm = (
                   key={domain}
                   type="button"
                   className={clsx(
-                    "px-3 py-1 rounded-full border text-sm transition",
+                    "!px-xl !rounded-full border text-sm transition",
                     domain === formData.kloudliteDomain
                       ? "bg-blue-600 text-white border-blue-600"
                       : "bg-white text-gray-800 border-gray-300 hover:border-blue-400",
@@ -202,6 +203,7 @@ export const RegistrationForm = (
 
         <div className="col-span-2 h-[48px] flex flex-col items-stretch">
           <Select
+            size="lg"
             label="Country"
             value={formData.country}
             onChange={(e: any) => {

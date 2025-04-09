@@ -2,19 +2,23 @@
   "name": "@repo/cf-domain-management",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev":"ts-node ./pkgs/index.ts"
+  },
   "exports": {
-    ".": {
-        "types": "./pkgs/allocator-interface/index.ts",
-        "default": "./pkgs/allocator-interface/index.ts"
+    "./*": {
+      "types": "./pkgs/*.ts",
+      "default": "./pkgs/*.ts"
     }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@repo/typescript-config": "workspace:*",
     "cloudflare": "^4.2.0",
-    "uuid": "^11.1.0",
-    "@repo/typescript-config": "workspace:*"
+    "uuid": "^11.1.0"
   },
   "peerDependencies": {
     "bcrypt": "^5.1.1"

@@ -3,7 +3,7 @@ export const generateNameSuggestions = (baseName:string, count = 10)=> {
   
     const suggestions = suffixes
       .slice(0, count)
-      .map(suffix => `${baseName}${suffix}`);
+      .map(suffix => `${baseName}${suffix}`.toLocaleLowerCase());
   
     return [baseName,...suggestions];
   }
