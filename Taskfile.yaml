@@ -10,6 +10,14 @@ tasks:
     cmds:
       - pnpm run build
 
+
+  acc-registory:app:build:
+    interactive: true
+    cmds:
+      # - pnpm install
+      # - pnpm build
+      - docker build . -t ghcr.io/kloudlite/account-registration-test:latest -f ./apps/account-registration/Dockerfile
+
   ac-reg-web:container:build:
     interactive: true
     preconditions:
